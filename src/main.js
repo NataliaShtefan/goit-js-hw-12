@@ -2,6 +2,8 @@ import iziToast from 'izitoast';
 import { fetchImages } from './js/pixabay-api';
 import { createGallery, showError, clearGallery, showLoader, hideLoader, toggleLoadMoreButton, } from './js/render-functions';
 
+const gallery = document.querySelector(".gallery")
+
 let currentPage = 1;
 let currentQuery = "";
 
@@ -39,7 +41,6 @@ document.querySelector('.btn-more').addEventListener('click', async () => {
     showLoader();
     try {
       const data = await fetchImages(currentQuery, currentPage);
-      toggleLoadMoreButton(data.totalHits > currentPage * 15);
       if (data.totalHits <= currentPage * 15) {
         iziToast.info({
           title: 'info',
@@ -47,6 +48,16 @@ document.querySelector('.btn-more').addEventListener('click', async () => {
           position: 'topRight'
         });
       }
+      createGallery(data.hits);
+      const galleryItems = document.querySelectorAll(".gallery-item");
+      if (galleryItems.length > 0) {
+          const itemHeight = galleryItems[0].getBoundingClientRect().height;
+
+          // Прокрутити сторінку на дві висоти картки галереї
+          window.scrollBy({
+              top: itemHeight * 2,
+              behavior: 'smooth'
+          })}
     } catch (error) {
       showError(error.message);
     } finally {

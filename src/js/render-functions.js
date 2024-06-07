@@ -14,7 +14,6 @@ let lightbox = new SimpleLightbox('.gallery a', {
   
    export function createGallery (images, isNewQuery) {
     const gallery = document.querySelector('.gallery');
-    const prevHeight = gallery.clientHeight;
     if (isNewQuery) {
       gallery.innerHTML = '';
     }
@@ -42,11 +41,11 @@ let lightbox = new SimpleLightbox('.gallery a', {
     
   lightbox.refresh();
 
-  const newHeight = gallery.clientHeight;
-  window.scrollBy({
-    top: newHeight - prevHeight,
-    behavior: 'smooth'
-  });
+  // const newHeight = gallery.clientHeight;
+  // window.scrollBy({
+  //   top: newHeight - prevHeight,
+  //   behavior: 'smooth'
+  // });
   }
 
   export function showError(message) {

@@ -16,7 +16,6 @@ const response = await axios(`${BASE_URL}`, {
       per_page: 15
     }
 })
-console.log(response.data)
 return response.data;
  }
 
