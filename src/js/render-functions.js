@@ -64,15 +64,11 @@ let lightbox = new SimpleLightbox('.gallery a', {
   }
   
   export function showLoader() {
-    console.log('+');
     document.querySelector('.div-loader').classList.remove('hidden');
   }
   
   export function hideLoader() {
-    console.log('-');
-    setTimeout(() => {
-      document.querySelector('.div-loader').classList.add('hidden');
-    },2000);
+    document.querySelector('.div-loader').classList.add('hidden');
   }
 
 

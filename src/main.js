@@ -47,13 +47,12 @@ document.querySelector('.btn-more').addEventListener('click', async () => {
           message: 'Weare sorry, but you`ve reached the end of search result.',
           position: 'topRight'
         });
+        toggleLoadMoreButton(false);
       }
       createGallery(data.hits);
       const galleryItems = document.querySelectorAll(".gallery-item");
       if (galleryItems.length > 0) {
           const itemHeight = galleryItems[0].getBoundingClientRect().height;
-
-          // Прокрутити сторінку на дві висоти картки галереї
           window.scrollBy({
               top: itemHeight * 2,
               behavior: 'smooth'
